@@ -1,39 +1,7 @@
-## .viewSize extension for SwiftUI
+# Swift Extensions
 
-This extension determines the geometry of a View and allows you to handle its size. This makes it possible to use the dimensions of a View somewhere else in its parent View.
+This repository represents a library of reusable Swift extensions.
 
-## Usage
-
-```swift
-struct HelloWorldView: View {
-    @State var textSize: CGSize?
-    
-    var body: some View {
-        Text("Hello, World!")
-            .viewSize { size in
-                self.textSize = size
-            }
-    }
-}
-```
-
-## Source code
-
-```swift
-import SwiftUI
-
-extension View {
-    func viewSize(onChange: @escaping (CGSize) -> Void) -> some View {
-        self
-            .background() {
-                GeometryReader { proxy in
-                    Path { path in
-                        DispatchQueue.main.async {
-                            onChange(proxy.size)
-                        }
-                    }
-                }
-            }
-    }
-}
-```
+| Name                            | Description                        |
+| :------------------------------ | :--------------------------------- |
+| [viewSize](/viewSize/README.md) | Handles dimensions of SwiftUI View |
